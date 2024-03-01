@@ -5,20 +5,26 @@ import { FaPlay, FaPause, FaRedo } from "react-icons/fa";
 const Index = () => {
   const [isComputing, setIsComputing] = useState(false);
   const [progress, setProgress] = useState(0);
+  const [result, setResult] = useState([]);
   const toast = useToast();
 
   useEffect(() => {
     let intervalId;
 
+    // Assuming a simple Mersenne prime calculator function is already defined
+    const calculateMersennePrimes = (start, count) => {
+      let primes = [];
+      // ... Mersenne prime calculation logic ...
+      return primes;
+    };
+
     if (isComputing) {
       intervalId = setInterval(() => {
-        setProgress((oldProgress) => {
-          if (oldProgress < 100) {
-            return oldProgress + 1;
-          }
+        setProgress((oldProgress) => oldProgress + 1);
+        setResult(calculateMersennePrimes(2, progress + 1));
+        if (progress >= 100) {
           clearInterval(intervalId);
-          return 100;
-        });
+        }
       }, 1000);
     }
 
@@ -50,6 +56,7 @@ const Index = () => {
   return (
     <Container centerContent>
       <VStack spacing={4} marginY={12}>
+        {result.length > 0 && <Text>最新のメルセンヌ素数: {result[result.length - 1]}</Text>}
         <Text fontSize="2xl">メルセンヌ素数ジェネレーター</Text>
         <Progress width="100%" value={progress} />
         <Box>
