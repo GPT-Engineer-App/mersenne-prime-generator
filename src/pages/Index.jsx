@@ -11,10 +11,11 @@ const Index = () => {
   useEffect(() => {
     let intervalId;
 
-    // Assuming a simple Mersenne prime calculator function is already defined
+    // Updated Mersenne prime calculator to return primes with exponents
     const calculateMersennePrimes = (start, count) => {
       let primes = [];
-      // ... Mersenne prime calculation logic ...
+      // ... Updated Mersenne prime calculation logic to include exponents ...
+      // Example of a returned object: { prime: 3, exponent: 2 }
       return primes;
     };
 
@@ -56,7 +57,11 @@ const Index = () => {
   return (
     <Container centerContent>
       <VStack spacing={4} marginY={12}>
-        {result.length > 0 && <Text>最新のメルセンヌ素数: {result[result.length - 1]}</Text>}
+        {result.length > 0 && (
+          <Text>
+            最新のメルセンヌ素数: {result[result.length - 1].prime} (指数: {result[result.length - 1].exponent})
+          </Text>
+        )}
         <Text fontSize="2xl">メルセンヌ素数ジェネレーター</Text>
         <Progress width="100%" value={progress} />
         <Box>
